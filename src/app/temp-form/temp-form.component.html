@@ -1,0 +1,73 @@
+<form (submit) = "submitForm()" submitForm class="text-center col-md-6 offset-lg-3 mt-4">
+ <div class="form-group">
+   <label for="firstCity">First city</label>
+   <input 
+    required 
+    minlength="3" 
+    maxlength="25" 
+    ngModel
+    name="firstCity"
+    #firstCity = "ngModel"
+    id="firstCity" 
+    type="text" 
+    class="form-control">
+    <div 
+    class="alert alert-danger" 
+    *ngIf="firstCity.touched && !firstCity.valid">
+        <div *ngIf="firstCity.errors?.required">
+            First city is required
+        </div>
+        <div *ngIf="firstCity.errors?.minlength">
+            City name should be minimum 3 characters.
+        </div>
+    </div>
+ </div>
+
+ <div class="form-group">
+  <label for="secondCity">Second city</label>
+  <input
+    required 
+    minlength="3" 
+    maxlength="25" 
+    ngModel
+    name="secondCity"
+    #secondCity="ngModel"
+    id="secondCity" 
+    type="text" 
+    class="form-control">
+   <div 
+    class="alert alert-danger"
+    *ngIf="secondCity.touched && !secondCity.valid">
+        <div *ngIf="secondCity.errors?.required">
+            Second city is required
+        </div>
+        <div *ngIf="secondCity.errors?.minlength">
+            City name should be minimum 3 characters.
+        </div>
+   </div>
+ </div>
+
+ <div class="form-group">
+    <label for="date">Date</label>
+    <input 
+        required 
+        [(ngModel)]="dob" name="dob"
+        #date="ngModel"
+        id="date" 
+        type="date" 
+        class="form-control">  
+    <div class="alert alert-danger"
+        *ngIf="date.touched && !date.valid">
+        Date is required
+    </div>
+ </div>
+
+ <button class="btn btn-primary w-10">Calculate!</button>
+
+ <div class="form-group">
+    <label for="temperature">Result:</label>
+    <p id="temperature" class="">
+        Temperature difference between cities was: {{result}} °C
+    </p>
+ </div>
+</form>
